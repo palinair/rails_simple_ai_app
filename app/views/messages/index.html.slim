@@ -1,0 +1,19 @@
+h1.text-center.mb-4 Simple AI Chatbot
+.container
+  #chatbox.mb-4
+    - @messages.each do |message|
+      .card.mb-2
+        .card-body
+          p
+            strong You:
+            |  #{message.content}
+          p
+            strong Bot:
+            |  #{message.response}
+
+  = form_with model: @new_message, local: true do |form|
+    .mb-3
+      = form.label :content, "Your message:", class: 'form-label'
+      = form.text_field :content, class: 'form-control'
+    .text-center
+      = form.submit "Send", class: 'btn btn-primary'
